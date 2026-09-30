@@ -22,7 +22,8 @@ public class CourseDaoImpl implements CourseDao {
     public Course createNewCourse(Course course) {
         //YOUR CODE STARTS HERE
 
-        jdbcTemplate.update("INSERT INTRO course(cid, courseCode, courseDesc, teacherId) VALUES(?, ?, ?, ?)", course.getCourseId(), course.getCourseName(), course.getCourseDesc(), course.getTeacherId());
+        jdbcTemplate.update("INSERT INTO course(cid, courseCode, courseDesc, teacherId) VALUES(?, ?, ?, ?);", course.getCourseId(), course.getCourseName(), course.getCourseDesc(), course.getTeacherId());
+
         return course;
 
         //YOUR CODE ENDS HERE
@@ -51,7 +52,7 @@ public class CourseDaoImpl implements CourseDao {
     public void updateCourse(Course course) {
         //YOUR CODE STARTS HERE
 
-        jdbcTemplate.update("UPDATE course SET courseCode = " + course.getCourseName() + ", " +
+        jdbcTemplate.update("UPDATE course SET courseCode = '" + course.getCourseName() + "', " +
                 "courseDesc = '" + course.getCourseDesc() +"', " +
                 "teacherId = " + course.getTeacherId() + " " +
                 "WHERE cid = " + course.getCourseId() + ";");
@@ -72,7 +73,7 @@ public class CourseDaoImpl implements CourseDao {
     public void deleteAllStudentsFromCourse(int courseId) {
         //YOUR CODE STARTS HERE
 
-        jdbcTemplate.update("DELETE FROM course;");
+        jdbcTemplate.update("DELETE FROM course_student WHERE course_id = " + courseId + ";");
 
         //YOUR CODE ENDS HERE
     }
