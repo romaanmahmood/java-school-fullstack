@@ -52,7 +52,7 @@ public class CourseDaoImpl implements CourseDao {
         //YOUR CODE STARTS HERE
 
         jdbcTemplate.update("UPDATE course SET courseCode = " + course.getCourseName() + ", " +
-                "courseDesc = " + course.getCourseDesc() +", " +
+                "courseDesc = '" + course.getCourseDesc() +"', " +
                 "teacherId = " + course.getTeacherId() + " " +
                 "WHERE cid = " + course.getCourseId() + ";");
 
